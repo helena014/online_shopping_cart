@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>PenBoss Home</title>
+  <link rel="stylesheet" href="home.css" />
+</head>
+<body>
+  <!-- Cart icon at top right only -->
+  <a href="cart.html" class="cart-top">
+    <span class="cart-icon">🛒</span>
+  </a>
+
+  <h2 id="welcome-msg"></h2>
+  <div id="product-list" class="product-grid"></div>
+  
+  <script>
+    // Set welcome name
+    const name = localStorage.getItem("username") || "Guest";
+    document.getElementById("welcome-msg").textContent = `Welcome, ${name}! 😊`;
+
+    // Product grid from backend
+    fetch('http://localhost:3000/products')
+      .then(res => res.json())
+      .then(products => {
+        let html = "";
+        products.forEach(prod => {
+          html += `
+          <div class="product-card">
+            <img src="${prod.image}" alt="${prod.name}" class="product-img">
+            <h3 class="product-name">${prod.name}</h3>
+            <p class="product-desc">${prod.description}</p>
+            <p class="product-price">₹${prod.price}</p>
+            <button onclick='addToCart(${JSON.stringify(prod)})' class='add-btn'>Add to Cart</button>
+          </div>
+          `;
+        });
+        document.getElementById('product-list').innerHTML = html;
+      })
+      .catch(err => {
+        document.getElementById('product-list').innerHTML =
+          "<p style='color:red;'>Could not load products. Is your Node server running?</p>";
+        console.error(err);
+      });
+
+    // Cart (localStorage)
+    window.cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    function addToCart(prod) {
+      window.cart.push(prod);
+      localStorage.setItem('cart', JSON.stringify(window.cart));
+      alert('Added to cart!');
+    }
+  </script>
+</body>
+
+
+
+</html>

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>PenBoss Cart</title>
+  <link rel="stylesheet" href="cart.css" />
+</head>
+<body>
+  <!-- Home icon at top right -->
+  <a href="home.html" class="home-top">
+    <span class="home-icon">🏠</span>
+  </a>
+  <h2 class="cart-title">Cart</h2>
+
+  <div id="cart-items"></div>
+  <div id="cart-total"></div>
+
+  <!-- Check Out Button at bottom center -->
+  <div class="checkout-container">
+    <button id="checkout-btn">Check Out</button>
+  </div>
+
+  <script>
+    // Load cart
+    const cart = JSON.parse(localStorage.getItem('cart') || '[]');
+    let itemsHtml = `<ul class='cart-list'>`;
+    let total = 0;
+    cart.forEach(item => {
+      itemsHtml += `<li class='cart-item'><span class='cart-item-name'>${item.name}</span> <span class='cart-item-price'>₹${item.price}</span></li>`;
+      total += Number(item.price);
+    });
+    itemsHtml += "</ul>";
+    document.getElementById('cart-items').innerHTML = itemsHtml;
+    document.getElementById('cart-total').innerHTML =
+      `<div class='cart-total-label'>Total:</div>
+       <div class='cart-total-value'>₹${total}</div>`;
+
+    // Checkout handler
+    document.getElementById('checkout-btn').onclick = function() {
+      fetch('http://localhost:3000/orders', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          name: localStorage.getItem('username'),
+          cart: cart,
+          total: total
+        })
+      }).then(res => res.json())
+        .then(data => {
+          alert('Order placed!');
+          localStorage.removeItem('cart');
+          window.location.href = 'index.html';
+        });
+    };
+  </script>
+</body>
+
+</html>

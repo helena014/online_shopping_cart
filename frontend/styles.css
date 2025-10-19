@@ -1,0 +1,98 @@
+body {
+  margin: 0;
+  min-height: 100vh;
+  width: 100vw;
+  font-family: 'Segoe UI', Verdana, Geneva, Tahoma, sans-serif;
+  background: linear-gradient(135deg, #1e90ff 40%, #6c63ff, #ffeba7 120%);
+  color: #142850;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  overflow-x: hidden;
+}
+
+#front-page, #home-page {
+  width: 100vw;
+  margin-top: 90px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  animation: dropIn 1s cubic-bezier(0.23,1,0.32,1);
+}
+
+@keyframes dropIn {
+  0% { opacity: 0; transform: translateY(-120px);}
+  100% { opacity: 1; transform: translateY(0);}
+}
+
+.main-title {
+  font-size: 3.6rem;
+  font-weight: 800;
+  letter-spacing: 1.5px;
+  margin-bottom: 40px;
+  color: #fff;
+  text-shadow: 0 4px 18px rgba(30,50,200,0.18);
+}
+.main-title span {
+  color: #ffdd57;
+  font-style: italic;
+  text-shadow: 0 1px 8px #4442;
+}
+
+.input-section {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.input-label {
+  font-size: 1.1rem;
+  margin-bottom: 8px;
+  color: #232846;
+  font-weight: 500;
+  letter-spacing: 1px;
+}
+input[type="text"] {
+  padding: 13px 18px;
+  font-size: 1.3rem;
+  border-radius: 8px;
+  border: none;
+  margin-bottom: 22px;
+  box-shadow: 0 4px 18px 0 rgba(1,40,120,0.08);
+  width: 340px;
+  outline: none;
+  background: #f5f6fa;
+  transition: box-shadow 0.2s;
+}
+input[type="text"]:focus {
+  box-shadow: 0 6px 28px 0 rgba(36, 48, 220,0.12);
+}
+
+button#checkin-btn {
+  background: linear-gradient(90deg, #6c63ff 30%, #1e90ff 100%);
+  color: #fff;
+  font-size: 1.3rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 7px;
+  padding: 12px 40px;
+  letter-spacing: 2px;
+  cursor: pointer;
+  box-shadow: 0 4px 22px 0 rgba(44,70,210,0.12);
+  transition: background 0.2s, box-shadow 0.2s;
+}
+button#checkin-btn:hover {
+  background: linear-gradient(90deg, #1e90ff 30%, #ffdd57 100%);
+  color: #232846;
+  box-shadow: 0 8px 36px 0 rgba(76, 109, 250, 0.23);
+}
+
+.welcome-msg {
+  font-size: 2.2rem;
+  color: #fff;
+  margin-bottom: 25px;
+  letter-spacing: 1.1px;
+  text-shadow: 0 2px 12px #30306082;
+}
+.hidden {
+  display: none;
+}

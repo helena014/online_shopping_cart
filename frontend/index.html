@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>PenBoss</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <!-- Front Page -->
+  <div id="front-page">
+    <h1 class="main-title">Welcome to <span>PenBoss</span></h1>
+    <div class="input-section">
+      <label for="username" class="input-label">Enter your name</label>
+      <input type="text" id="username" placeholder="e.g. Helena" autofocus />
+      <button id="checkin-btn">Check-In</button>
+    </div>
+  </div>
+  
+  <!-- Home Page -->
+  <div id="home-page" class="hidden">
+    <h2 class="welcome-msg">Welcome, <span id="user-welcome"></span> 😊</h2>
+    <!-- Add more home page sections here -->
+    <p>Start shopping for your favorite pens!</p>
+  </div>
+  
+  <script src="script.js"></script>
+</body>
+</html>
