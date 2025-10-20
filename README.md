@@ -1,6 +1,6 @@
 # PenBoss Project
 
-A web app for shopping pens online with Node.js, MongoDB Atlas, and React/HTML frontend.
+A web app for shopping pens online with Node.js, MongoDB Atlas, and HTML/CSS/JS frontend.
 
 ## Features
 - Product grid
